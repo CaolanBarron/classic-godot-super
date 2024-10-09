@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://3hy6m5pfj00u"]
+
+[ext_resource type="Script" path="res://Scripts/BasicPong.gd" id="1_1rmem"]
+[ext_resource type="PackedScene" uid="uid://8ak8bcftfwne" path="res://Objects/EnemyPaddle.tscn" id="1_g4qjc"]
+[ext_resource type="PackedScene" uid="uid://bhtb6nmuscrgn" path="res://Objects/PlayerPaddle.tscn" id="1_sniby"]
+[ext_resource type="PackedScene" uid="uid://ltm6nslif50k" path="res://Objects/Ball.tscn" id="3_e1v6x"]
+[ext_resource type="Script" path="res://Scripts/BallObstacle.gd" id="4_cdyof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45j6l"]
+size = Vector2(859, 20)
+
+[node name="BasicPong" type="Node2D"]
+script = ExtResource("1_1rmem")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="EnemyPaddle" parent="." instance=ExtResource("1_g4qjc")]
+position = Vector2(350, 0)
+
+[node name="PlayerPaddle" parent="." instance=ExtResource("1_sniby")]
+position = Vector2(-350, 0)
+disable_mode = 2
+
+[node name="Ball" parent="." instance=ExtResource("3_e1v6x")]
+unique_name_in_owner = true
+disable_mode = 2
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Ceiling" type="Area2D" parent="Walls"]
+position = Vector2(0, -272)
+script = ExtResource("4_cdyof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Ceiling"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_45j6l")
+
+[node name="Floor" type="Area2D" parent="Walls"]
+position = Vector2(0, 275)
+script = ExtResource("4_cdyof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Floor"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_45j6l")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerScore" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -140.0
+offset_top = -200.0
+offset_right = -100.0
+offset_bottom = -109.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUScore" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 100.0
+offset_top = -200.0
+offset_right = 140.0
+offset_bottom = -109.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Walls/Ceiling" to="Walls/Ceiling" method="_on_area_entered"]
+[connection signal="area_entered" from="Walls/Floor" to="Walls/Floor" method="_on_area_entered"]
