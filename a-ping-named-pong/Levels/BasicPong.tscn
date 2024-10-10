@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3hy6m5pfj00u"]
+[gd_scene load_steps=9 format=3 uid="uid://3hy6m5pfj00u"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPong.gd" id="1_1rmem"]
 [ext_resource type="PackedScene" uid="uid://8ak8bcftfwne" path="res://Objects/EnemyPaddle.tscn" id="1_g4qjc"]
@@ -8,6 +8,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45j6l"]
 size = Vector2(859, 20)
+
+[sub_resource type="Gradient" id="Gradient_53d60"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lvx30"]
+gradient = SubResource("Gradient_53d60")
 
 [node name="BasicPong" type="Node2D"]
 script = ExtResource("1_1rmem")
@@ -43,31 +49,59 @@ script = ExtResource("4_cdyof")
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_45j6l")
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-2.99997, -0.500025)
+scale = Vector2(3.38281, 529)
+texture = SubResource("GradientTexture1D_lvx30")
 
-[node name="PlayerScore" type="Label" parent="UI"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+
+[node name="PlayerScore" type="Label" parent="UI/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -140.0
-offset_top = -200.0
-offset_right = -100.0
-offset_bottom = -109.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="CPUScore" type="Label" parent="UI"]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="CPUScore" type="Label" parent="UI/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 100.0
-offset_top = -200.0
-offset_right = 140.0
-offset_bottom = -109.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
