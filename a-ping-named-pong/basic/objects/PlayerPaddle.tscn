@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhtb6nmuscrgn"]
+
+[ext_resource type="Script" path="res://basic/scripts/PlayerPaddle.gd" id="1_kw4yy"]
+[ext_resource type="AudioStream" uid="uid://b5udjnqwdroq8" path="res://basic/audio/Interactions/sfx_sounds_interaction10.wav" id="2_ovwuj"]
+
+[sub_resource type="Gradient" id="Gradient_h2i00"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ji7os"]
+gradient = SubResource("Gradient_h2i00")
+width = 30
+
+[node name="PlayerPaddle" type="Area2D"]
+script = ExtResource("1_kw4yy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 100)
+texture = SubResource("GradientTexture1D_ji7os")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1, 100)
+polygon = PackedVector2Array(15, 0.5, 0, 0.5, 0, -0.5, 15, -0.5)
+
+[node name="BallImpactSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ovwuj")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

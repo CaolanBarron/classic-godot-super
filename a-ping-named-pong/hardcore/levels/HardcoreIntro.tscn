@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cprpgn1seb3r"]
+
+[ext_resource type="Texture2D" uid="uid://hjrq5a1d7wck" path="res://hardcore/sprites/Player.png" id="1_sf4gh"]
+
+[node name="HardCoreIntro" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite-0003" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_sf4gh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(19, 48, -19, 48, -19, -48, 19, -48)
