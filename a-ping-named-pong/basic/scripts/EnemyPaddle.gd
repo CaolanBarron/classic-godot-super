@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var ball: Ball = %Ball
+@onready var ball: BasicBall = %Ball
 @onready var ballImpactSound: AudioStreamPlayer = $BallImpactSound
 
 @onready var _screen_size_y = get_viewport_rect().size.y

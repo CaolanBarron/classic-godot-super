@@ -1,13 +1,141 @@
-[gd_scene load_steps=2 format=3 uid="uid://cprpgn1seb3r"]
+[gd_scene load_steps=8 format=3 uid="uid://cprpgn1seb3r"]
 
-[ext_resource type="Texture2D" uid="uid://hjrq5a1d7wck" path="res://hardcore/sprites/Player.png" id="1_sf4gh"]
+[ext_resource type="Script" path="res://hardcore/scripts/HardcoreIntro.gd" id="1_lx8mg"]
+[ext_resource type="PackedScene" uid="uid://c0c42ujk84ln2" path="res://hardcore/objects/Player.tscn" id="2_p56ep"]
+[ext_resource type="PackedScene" uid="uid://du0xxui7p4en6" path="res://hardcore/objects/Ball.tscn" id="3_gadd1"]
+[ext_resource type="PackedScene" uid="uid://b6stjrpo554a3" path="res://hardcore/objects/TeleportEnemy.tscn" id="4_bjqqj"]
+[ext_resource type="PackedScene" uid="uid://b1nhmk7af6ry6" path="res://hardcore/objects/Dialog.tscn" id="5_dumd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xagqj"]
+size = Vector2(860, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkkou"]
+size = Vector2(20, 523)
 
 [node name="HardCoreIntro" type="Node2D"]
+script = ExtResource("1_lx8mg")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Sprite-0003" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("1_sf4gh")
+[node name="Player" parent="." instance=ExtResource("2_p56ep")]
+position = Vector2(-350, 0)
+platform_floor_layers = 4294967040
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-polygon = PackedVector2Array(19, 48, -19, 48, -19, -48, 19, -48)
+[node name="Ball" parent="." instance=ExtResource("3_gadd1")]
+platform_floor_layers = 4294967040
+
+[node name="TeleportEnemy" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_bjqqj")]
+position = Vector2(350, 0)
+ball = NodePath("../Ball")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Ceiling" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Ceiling"]
+shape = SubResource("RectangleShape2D_xagqj")
+
+[node name="Area2D" type="Area2D" parent="Walls/Ceiling"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Ceiling/Area2D"]
+shape = SubResource("RectangleShape2D_xagqj")
+
+[node name="Floor" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Floor"]
+shape = SubResource("RectangleShape2D_xagqj")
+
+[node name="Area2D" type="Area2D" parent="Walls/Floor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Floor/Area2D"]
+shape = SubResource("RectangleShape2D_xagqj")
+
+[node name="LeftWall" type="Area2D" parent="Walls"]
+position = Vector2(-439, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qkkou")
+
+[node name="RightWall" type="Area2D" parent="Walls"]
+position = Vector2(441, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qkkou")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="PlayerScore" type="Label" parent="UI/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="EnemyScore" type="Label" parent="UI/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="DialogContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -429.0
+offset_top = -262.0
+offset_right = 430.0
+offset_bottom = 263.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.5
+offset_top = -260.5
+offset_right = 426.5
+offset_bottom = 260.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Dialog" parent="DialogContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_dumd0")]
+layout_mode = 2
+
+[connection signal="scoreCPU" from="Ball" to="." method="enemyScored"]
+[connection signal="scorePlayer" from="Ball" to="." method="playerScored"]

@@ -47,6 +47,7 @@ shape = SubResource("RectangleShape2D_45j6l")
 
 [node name="BallImpactSound" type="AudioStreamPlayer" parent="Walls/Ceiling"]
 stream = ExtResource("6_swtet")
+volume_db = -20.0
 
 [node name="Floor" type="Area2D" parent="Walls"]
 position = Vector2(0, 275)
@@ -58,6 +59,7 @@ shape = SubResource("RectangleShape2D_45j6l")
 
 [node name="BallImpactSound" type="AudioStreamPlayer" parent="Walls/Floor"]
 stream = ExtResource("7_s14nb")
+volume_db = -20.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
@@ -120,10 +122,12 @@ vertical_alignment = 1
 [node name="PlayerScoreSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_ri65l")
+volume_db = -20.0
 
 [node name="CPUScoreSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_7bbgi")
+volume_db = -20.0
 
 [connection signal="area_entered" from="Walls/Ceiling" to="Walls/Ceiling" method="_on_area_entered"]
 [connection signal="area_entered" from="Walls/Floor" to="Walls/Floor" method="_on_area_entered"]

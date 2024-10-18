@@ -9,7 +9,7 @@ var cpuScore = 0
 @onready var playerScoreSound:AudioStreamPlayer = %PlayerScoreSound
 @onready var cpuScoreSound:AudioStreamPlayer = %CPUScoreSound
 
-@onready var ball:Ball = %Ball
+@onready var ball:BasicBall = %Ball
 
 func _ready():
 	ball.scorePlayer.connect(player_scored)

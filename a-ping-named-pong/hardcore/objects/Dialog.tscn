@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1nhmk7af6ry6"]
+
+[ext_resource type="Texture2D" uid="uid://5ghjy1yyw0gy" path="res://hardcore/sprites/dialogue_background.png" id="1_il2k8"]
+
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = 30.0
+offset_right = 300.0
+offset_bottom = 230.0
+texture = ExtResource("1_il2k8")
+region_rect = Rect2(0, 0, 12.1236, 12.1896)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6

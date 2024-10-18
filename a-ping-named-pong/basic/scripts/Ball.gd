@@ -1,5 +1,5 @@
 extends Area2D
-class_name Ball
+class_name BasicBall
 const DEFUALT_SPEED = 200.0
 var speed = 0
 var speedIncrement = 25.0
