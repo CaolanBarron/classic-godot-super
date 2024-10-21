@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0c42ujk84ln2"]
+[gd_scene load_steps=8 format=3 uid="uid://c0c42ujk84ln2"]
 
 [ext_resource type="Script" path="res://hardcore/scripts/Player.gd" id="1_evd6d"]
 [ext_resource type="Texture2D" uid="uid://hjrq5a1d7wck" path="res://hardcore/sprites/Player.png" id="1_iwcp0"]
 [ext_resource type="Script" path="res://hardcore/scripts/StateMachine.gd" id="3_r8hbn"]
 [ext_resource type="Script" path="res://hardcore/scripts/states/PlayerMoveVertical.gd" id="4_rx0qn"]
 [ext_resource type="Script" path="res://hardcore/scripts/states/PlayerMoveHorizontal.gd" id="5_u5rnc"]
+[ext_resource type="Script" path="res://hardcore/scripts/states/PlayerDialog.gd" id="6_0b1gt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2lv3"]
 size = Vector2(30, 96)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_evd6d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -30,7 +33,15 @@ player = NodePath("../..")
 script = ExtResource("5_u5rnc")
 player = NodePath("../..")
 
+[node name="Dialog" type="Node" parent="StateMachine" node_paths=PackedStringArray("body")]
+script = ExtResource("6_0b1gt")
+body = NodePath("../..")
+
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_w2lv3")
+
+[connection signal="area_entered" from="Area2D" to="." method="collision_detected"]

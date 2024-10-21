@@ -3,8 +3,13 @@ class_name EnemyTeleport
 
 const BUFFER_DISTANCE = 5.00
 var detected_intersection = null
+var malfunction := false
 @onready var _screen_size_y = enemy.get_viewport_rect().size.y
 @export var enemy: TeleportEnemy
+
+func _ready():
+	SignalBus.start_dialogue.connect(_on_dialogue_entered)
+	SignalBus.malfunction_teleportation.connect(_malfunction)
 
 func Process(_delta):
 	if enemy.ball.position.x < enemy.ball.previous_x_pos:
@@ -44,6 +49,8 @@ func find_ball_intersection():
 		if abs(point.y) > _screen_size_y / 2:
 			break
 		if point.x > enemy.position.x:  # Use tolerance for comparison
+			if malfunction:
+				return Vector2(point.x, 150)
 			return point
 
 
@@ -71,3 +78,10 @@ func parent_animation_finished():
 		if detected_intersection:
 			teleport_enemy(detected_intersection)
 		enemy.sprite.play('teleport_enter')
+
+
+func _on_dialogue_entered():
+	Transitioned.emit(self, 'Dialog')
+
+func _malfunction():
+	malfunction = true

@@ -6,6 +6,9 @@ class_name PlayerMoveVertical
 var lock_x 
 var direction: Vector2 = Vector2.ZERO
 
+func _ready():
+	SignalBus.start_dialogue.connect(_on_dialogue_entered)
+
 func Enter():
 	lock_x = player.position.x
 
@@ -19,4 +22,8 @@ func Process(_delta):
 
 
 func Physics_process(delta):
-	player.move_and_collide(direction * player.SPEED * delta)
+	player.move_and_collide(direction * player.MOVE_SPEED * delta)
+
+
+func _on_dialogue_entered():
+	Transitioned.emit(self, 'Dialog')

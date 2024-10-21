@@ -30,9 +30,12 @@ func on_child_transitioned(state, new_state_name):
 	if current_state != state:
 		return
 	
+	if !states.has(new_state_name.to_lower()): 
+		print('Cannot find state: ' + new_state_name)
+		return 
+	
 	var new_state = states[new_state_name.to_lower()]
 	if !new_state: 
-		printerr('Cannot find state: ' + new_state_name)
 		return
 	
 	if current_state:

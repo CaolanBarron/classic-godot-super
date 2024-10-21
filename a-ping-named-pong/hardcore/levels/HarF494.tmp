@@ -70,8 +70,7 @@ shape = SubResource("RectangleShape2D_qkkou")
 
 [node name="RightWall" type="Area2D" parent="Walls"]
 position = Vector2(441, 0)
-collision_layer = 6
-collision_mask = 5
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
 position = Vector2(0, 0.5)

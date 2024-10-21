@@ -1,5 +1,5 @@
 extends State
-class_name EnemyDialog
+class_name PlayerDialog
 
 @export var body: CharacterBody2D
 
@@ -22,4 +22,7 @@ func Exit():
 
 
 func _on_dialogue_finished():
-	Transitioned.emit(self, 'Idle')
+	if body.enemy_will_malfunction:
+		Transitioned.emit(self, 'MoveHorizontal')
+	else:
+		Transitioned.emit(self, 'MoveVertical')

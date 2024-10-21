@@ -13,11 +13,15 @@ var previous_x_pos_list : Array = []
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var raycast_display: Line2D = $Line2D
 
+var _in_dialogue := true
+
 signal scorePlayer
 signal scoreCPU
 
 func _ready():
 	start_position = position
+	SignalBus.start_dialogue.connect(_on_dialogue_entered)
+	SignalBus.end_dialogue.connect(_on_dialogue_exited)
 
 
 func _process(_delta):
@@ -29,7 +33,6 @@ func _process(_delta):
 		
 	var distance_traveled = previous_x_pos_list.max() - previous_x_pos_list.min()
 	if distance_traveled < 3 && distance_traveled != 0:
-
 		if position.x < 0:
 			velocity = velocity.bounce(Vector2.RIGHT)
 			velocity.x += 1
@@ -42,7 +45,7 @@ func _process(_delta):
 		reset()
 	elif position.x > _screen_size_x/2:
 		scorePlayer.emit()
-		reset()
+		disable()
 
 
 func _physics_process(delta):
@@ -52,6 +55,7 @@ func _physics_process(delta):
 
 
 func start_movement():
+	if _in_dialogue: return
 	speed = DEFUALT_SPEED
 	previous_x_pos = position.x
 	velocity = Vector2(-1, RandomNumberGenerator.new().randf_range(-1.0, 1.0))
@@ -63,6 +67,14 @@ func reset():
 	speed = 0
 	velocity = Vector2.ZERO
 	timer.start(1)
+
+
+func disable():
+	speed = 0
+	previous_x_pos = Vector2(0, -300)
+	position = Vector2(0, -300)
+	velocity = Vector2.ZERO
+	timer.disconnect('timeout', start_movement)
 
 
 func speed_increment():
@@ -82,3 +94,12 @@ func bounce(pos: Vector2):
 	var randomAlteration = rng.randf_range(-0.8, 0.8)
 	velocity = Vector2(velocity.x, velocity.y + randomAlteration)
 	speed_increment()
+
+
+func _on_dialogue_entered():
+	_in_dialogue = true
+
+
+func _on_dialogue_exited():
+	_in_dialogue = false
+	timer.start(1)

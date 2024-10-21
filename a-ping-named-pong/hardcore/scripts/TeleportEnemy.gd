@@ -6,3 +6,8 @@ class_name TeleportEnemy
 
 const MOVE_SPEED = 150.00
 const SPRITE_HEIGHT = 100
+
+var starting_position
+
+func _ready():
+	starting_position = position

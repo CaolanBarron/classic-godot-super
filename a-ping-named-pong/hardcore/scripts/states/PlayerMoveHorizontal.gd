@@ -3,19 +3,24 @@ class_name PlayerMoveHorizontal
 
 @export var player: Player
 
-
-var direction: Vector2 = Vector2.ZERO
-
-func Enter():
-	pass
+func _ready():
+	SignalBus.start_dialogue.connect(_on_dialogue_entered)
 
 
 func Process(_delta):
 	if Input.is_action_just_pressed("transition-move-state") and !player.transition_input_locked:
 		Transitioned.emit(self, "MoveVertical")
 	
-	direction = Vector2(Input.get_axis("move-left", "move-right"), 0)
-	
+
 
 func Physics_process(delta):
-	player.move_and_collide(direction * player.SPEED * delta)
+	player.velocity.y += player.gravity * delta
+	
+	var direction = Input.get_axis("move-left", "move-right")
+	player.velocity.x = direction * player.MOVE_SPEED
+	
+	player.move_and_slide()
+
+
+func _on_dialogue_entered():
+	Transitioned.emit(self, 'Dialog')

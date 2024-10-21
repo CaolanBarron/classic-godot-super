@@ -2,13 +2,9 @@ extends State
 class_name EnemyIdle
 
 @export var enemy: TeleportEnemy
-var starting_position
 
 func _ready():
-	starting_position = enemy.position
-
-func Start():
-	starting_position = enemy.position
+	SignalBus.start_dialogue.connect(_on_dialogue_entered)
 
 func Exit():
 	pass
@@ -20,4 +16,7 @@ func Process(_delta):
 
 
 func Physics_process(delta):
-	enemy.position = enemy.position.move_toward(starting_position, enemy.MOVE_SPEED * delta)
+	enemy.position = enemy.position.move_toward(enemy.starting_position, enemy.MOVE_SPEED * delta)
+
+func _on_dialogue_entered():
+	Transitioned.emit(self, 'Dialog')
