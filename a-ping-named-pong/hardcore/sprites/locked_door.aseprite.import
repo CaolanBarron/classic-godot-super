@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://j7viuv754s3j"
+path="res://.godot/imported/locked_door.aseprite-be60434391f5730c89f5a947075fc357.res"
+
+[deps]
+
+source_file="res://hardcore/sprites/locked_door.aseprite"
+dest_files=["res://.godot/imported/locked_door.aseprite-be60434391f5730c89f5a947075fc357.res"]
+
+[params]
+

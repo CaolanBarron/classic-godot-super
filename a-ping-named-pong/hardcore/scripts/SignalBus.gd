@@ -6,3 +6,6 @@ signal end_dialogue
 
 # Hardcore Intro
 signal malfunction_teleportation
+
+
+signal start_black_hole

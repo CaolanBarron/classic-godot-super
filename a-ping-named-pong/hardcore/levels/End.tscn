@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddv7v143p6ecs"]
+
+[ext_resource type="Texture2D" uid="uid://bab0n7yoktn2r" path="res://hardcore/sprites/Background.png" id="1_0m6ti"]
+[ext_resource type="FontFile" uid="uid://cohveutwv0ff0" path="res://hardcore/AldotheApache.ttf" id="1_5wk06"]
+[ext_resource type="Script" path="res://hardcore/scripts/EndController.gd" id="1_mcwa6"]
+
+[node name="End" type="Node2D"]
+script = ExtResource("1_mcwa6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-61, 274)
+scale = Vector2(2.31187, 1.69936)
+texture = ExtResource("1_0m6ti")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 365.0
+offset_top = 187.0
+offset_right = 503.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("1_5wk06")
+theme_override_font_sizes/font_size = 100
+text = "The 
+End"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

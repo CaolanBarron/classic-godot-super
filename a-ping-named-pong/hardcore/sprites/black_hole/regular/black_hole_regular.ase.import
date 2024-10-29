@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bfs2lapeetmo4"
+path="res://.godot/imported/black_hole_regular.ase-6d60819f64c3cc15ca8337d9ba17b8f1.res"
+
+[deps]
+
+source_file="res://hardcore/sprites/black_hole/regular/black_hole_regular.ase"
+dest_files=["res://.godot/imported/black_hole_regular.ase-6d60819f64c3cc15ca8337d9ba17b8f1.res"]
+
+[params]
+
