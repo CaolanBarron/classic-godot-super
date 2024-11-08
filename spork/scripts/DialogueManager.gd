@@ -12,6 +12,8 @@ func _ready():
 	
 
 func _player_input(input:String):
+	# validate input
+	if input.length() == 0: return
 	var display_label = Label.new()
 	display_label.text = "> " + input
 	dialogue_display.add_child(display_label)
