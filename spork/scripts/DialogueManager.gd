@@ -37,9 +37,15 @@ func _player_input_label(input: String) -> Label:
 	return display_label
 
 
+# TODO: rename this function
 func _parser_output_label(output: String) -> Label:
 	var display_label = Label.new()
 	display_label.text = output
 	display_label.custom_minimum_size = Vector2(100,0)
 	display_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	return display_label
+
+
+func display_multiple_outputs(outputs: Array):
+	for output in outputs:
+		dialogue_display.add_child(_parser_output_label(output))
