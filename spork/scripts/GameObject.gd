@@ -6,6 +6,8 @@ class_name GameObject
 @export var description: String
 @export var synonyms: Array[String]
 
+@onready var player = %Player
+
 func _ready():
 	# Validate the Game objects variables are defined
 	if !display_name:

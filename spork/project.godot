@@ -14,7 +14,11 @@ config/name="Spork"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[autoload]
+
+SignalManager="*res://scripts/SignalManager.gd"
+
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720

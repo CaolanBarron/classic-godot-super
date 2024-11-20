@@ -9,6 +9,7 @@ func _ready():
 		return
 	
 	display_surroundings()
+	SignalManager.describe_environment.connect(display_surroundings)
 
 func find_usable_objects():
 	var siblings:Array = get_parent().get_children()
@@ -30,3 +31,11 @@ func get_surrounding_descriptions() -> Array:
 func display_surroundings():
 	var descriptions = get_surrounding_descriptions()
 	dialogue_manager.display_multiple_outputs(descriptions)
+
+func display_inventory():
+	var children = get_children()
+	
+	if children.size() == 0:
+		return 'You do not have anything in your inventory right now'
+		
+	return children.map(func(o): return o.display_name)

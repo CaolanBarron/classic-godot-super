@@ -25,7 +25,12 @@ func _player_input(input:String):
 	dialogue_display.add_child(_player_input_label(formatted_input))
 	var parser_output = input_parser.parse_command(formatted_input)
 	player_input.clear()
-	dialogue_display.add_child(_parser_output_label(parser_output))
+	if !parser_output:
+		return
+	if type_string(typeof(parser_output)) == 'Array':
+		display_multiple_outputs(parser_output)
+	else:
+		dialogue_display.add_child(_parser_output_label(parser_output))
 
 
 func _player_input_label(input: String) -> Label:

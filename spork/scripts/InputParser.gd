@@ -2,14 +2,19 @@ extends Node
 class_name InputParser
 
 @onready var player: Player = %Player
+@onready var action_manager: ActionManager = %ActionManager
 
 var _verbs = {
 	'ATTACK' = ['KILL', 'HIT'], 
 	'TALK' = ['SPEAK'], 
 	'LOOK' = ['EXAMINE'], 
-	'WALK' = ['EXIT', 'LEAVE', 'ENTER'],
+	'WALK' = ['EXIT', 'LEAVE', 'ENTER', 'GO', 'MOVE', 'STROLL', 'TRAVEL', 'SAUNTER'],
 	'READ' = [],
-	'OPEN' = ['UNLOCK']
+	'OPEN' = ['UNLOCK'],
+	'TAKE' = ['RETRIEVE', 'LIFT', 'PICK', 'GATHER', 'COLLECT'],
+	'DROP' = ['DISCARD'],
+	'INVENTORY' = ['POCKETS'],
+	'DANCE' = ['GRIDDY']
 }
 
 func _ready():
@@ -42,21 +47,26 @@ func _find_object(word: String, objects: Array):
 
 func parse_command(command: String):
 	# Split the string into words
-	
+	var command_array = command.to_upper().split(' ')
 	# Find the verb
-	var found_verb = _find_verb(command.split(' ')[0].to_upper())
+	var found_verb = _find_verb(command_array[0])
 	if !found_verb:
 			return 'Im not sure what you are trying to do'
 	
-	# TODO: check for special verbs that dont use objects 
+	# Check for special verbs that dont use objects 
+	var game_verb = action_manager.global_verbs(found_verb, command_array)
+	if game_verb:
+		if game_verb == 'LOCATION_CHANGED':
+			return
+		return game_verb
 	
 	# Find the main object
 	var surrounding_objects = player.find_usable_objects()
 	print('Found objects: ')
 
 	var found_objects = []
-	for word in command.split(' '):
-		var found_object = _find_object(word.to_upper(), surrounding_objects)
+	for word in command_array:
+		var found_object = _find_object(word, surrounding_objects)
 		if found_object: found_objects.append(found_object)
 	print(found_objects)
 	# In the future I may want to do a check if no objects are said for generic commands
@@ -73,3 +83,4 @@ func parse_command(command: String):
 	
 	
 	return ''
+
