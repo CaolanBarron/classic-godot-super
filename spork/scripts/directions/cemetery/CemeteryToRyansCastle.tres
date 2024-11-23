@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://cy5t2fxgf357b"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_474jq"]
+
+[resource]
+script = ExtResource("1_474jq")
+scene_description = "A small path to the east leads towards Ryans castle"
+entrance_description = "You head towards Ryans castle"
+location = NodePath("../TownCenter/RyansCastle")
+names = Array[String](["RYAN", "EAST", "RYANS"])
+locked_by = ""

@@ -14,6 +14,8 @@ func _applicable_verbs(verb: String) -> String:
 			return pick_up()
 		'DROP':
 			return drop()
+		'OPEN':
+			return open()
 	
 	# check base object verbs
 	var try_generic_verbs: String = super._applicable_verbs(verb)
@@ -41,3 +43,6 @@ func drop():
 	var location = player.get_parent()
 	reparent(location)
 	return 'You dropped the ' + display_name
+
+func open():
+	pass

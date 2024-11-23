@@ -14,18 +14,21 @@ func _ready():
 func find_usable_objects():
 	var siblings:Array = get_parent().get_children()
 	siblings += get_children()
-	return siblings.filter(func(o): return o.name != 'Player')
+	return siblings.filter(func(o): return o.name != 'Player' and !(o is Location))
 
 
 func get_surrounding_descriptions() -> Array:
 	# Get the parent location
 	var parent_location = get_parent()
-	# Get usable objects
-	var usable_objects = find_usable_objects()
-	usable_objects.push_front(parent_location)
-	var description_strings = \
-		usable_objects.map(func (o): return o.scene_description)
-	return description_strings.filter(func(o): return o)
+
+	var surroundings = [parent_location]
+	surroundings += parent_location.directions
+	surroundings += find_usable_objects()
+	
+	surroundings = surroundings.filter(func(o): return o.scene_description)
+	var scene_description_strings = \
+		surroundings.map(func (o): return o.scene_description)
+	return scene_description_strings
 
 
 func display_surroundings():

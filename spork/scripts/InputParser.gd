@@ -62,13 +62,11 @@ func parse_command(command: String):
 	
 	# Find the main object
 	var surrounding_objects = player.find_usable_objects()
-	print('Found objects: ')
 
 	var found_objects = []
 	for word in command_array:
 		var found_object = _find_object(word, surrounding_objects)
 		if found_object: found_objects.append(found_object)
-	print(found_objects)
 	# In the future I may want to do a check if no objects are said for generic commands
 	# TODO: If found objects is empty. Use Verb object question function
 	if found_objects.size() == 0: return 'What would you like to ' + found_verb

@@ -1,9 +1,9 @@
 extends Item
 class_name Book
 
-@export var book_contents: String
+@export var book_contents: Array[String]
 
-func _applicable_verbs(verb: String) -> String:
+func _applicable_verbs(verb: String):
 	match verb:
 		'READ':
 			return book_contents

@@ -23,19 +23,21 @@ func walk(command):
 	var found_direction = current_position.find_direction(command)
 	
 	if !found_direction:
+		#TODO: check if they used a direction and say theres nothing that way
 		return 'Where would you like to go?'
 	
-	if 'locked_by' in found_direction:
+	if 'locked_by' in found_direction && found_direction.locked_by:
 		var player_inventory = player.get_inventory()
 		var found_key = false
 		for item in player_inventory:
 			if item.name == found_direction['locked_by']:
 				found_key = true
+		
 		if !found_key:
 			return 'This way is locked, you must find the key.'
 		# This UNLOCKS the direction
 		found_direction.erase('locked_by')
-	print(found_direction)
+
 	player.reparent(current_position.get_node(found_direction.location))
 	SignalManager.describe_environment.emit()
 	
