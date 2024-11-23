@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://2h4l0uvk2bo0"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_mwag5"]
+
+[resource]
+script = ExtResource("1_mwag5")
+scene_description = "A path leads west to the crossroads"
+entrance_description = "You stop admiring the awe inspiring device and head west"
+location = NodePath("../Crossroads")
+names = Array[String](["WEST", "CROSSROADS", "CROSS", "ROADS"])
+locked_by = ""

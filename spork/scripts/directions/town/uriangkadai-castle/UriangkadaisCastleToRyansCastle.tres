@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://caiev61q512me"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_t0gxc"]
+
+[resource]
+script = ExtResource("1_t0gxc")
+scene_description = "A two minute walk to the east will take you to Ryans castle"
+entrance_description = "You leave Uriangkadais castle and head to Ryans castle"
+location = NodePath("../RyansCastle")
+names = Array[String](["EAST", "RYANS", "RYAN"])
+locked_by = ""

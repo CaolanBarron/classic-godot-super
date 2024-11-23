@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://dgryugu4xum73"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_aypum"]
+
+[resource]
+script = ExtResource("1_aypum")
+scene_description = "A path leads to the east towards the font of power "
+entrance_description = "You decide to take the path to the east"
+location = NodePath("../DieselGenerator")
+names = Array[String](["EAST", "FONT", "POWER", "GENERATOR"])
+locked_by = ""

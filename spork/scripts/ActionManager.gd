@@ -36,7 +36,7 @@ func walk(command):
 		if !found_key:
 			return 'This way is locked, you must find the key.'
 		# This UNLOCKS the direction
-		found_direction.erase('locked_by')
+		found_direction.locked_by = ''
 
 	player.reparent(current_position.get_node(found_direction.location))
 	SignalManager.describe_environment.emit()

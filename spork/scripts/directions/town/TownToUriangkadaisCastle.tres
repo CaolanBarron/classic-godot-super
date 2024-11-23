@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://dki7xb3wyrs5o"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_capsw"]
+
+[resource]
+script = ExtResource("1_capsw")
+scene_description = "On the left, the great castle of Uriangkadai looms over the town"
+entrance_description = "You step towards Uriangkadais castle"
+location = NodePath("UriangkadaiCastle")
+names = Array[String](["LEFT", "URIANGKADAI", "URIANGKADAIS"])
+locked_by = ""

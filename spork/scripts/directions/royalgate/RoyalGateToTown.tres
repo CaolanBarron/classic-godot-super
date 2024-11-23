@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://dtwgcxr0ax68k"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_a3yfp"]
+
+[resource]
+script = ExtResource("1_a3yfp")
+scene_description = "A great road leads westward towards the town"
+entrance_description = "You follow down the great road towards the town"
+location = NodePath("../TownCenter")
+names = Array[String](["WEST", "TOWN", "ROAD"])
+locked_by = ""

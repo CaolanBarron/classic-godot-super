@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://c5ao3ww84d021"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_thlj2"]
+
+[resource]
+script = ExtResource("1_thlj2")
+scene_description = "A great road comes in from the east originating from the royal gate"
+entrance_description = "You follow the road to the royal gate"
+location = NodePath("../RoyalGate")
+names = Array[String](["GATE", "WEST", "ROYALGATE", "ROYAL"])
+locked_by = ""

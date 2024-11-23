@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://dp7iqvc4wpdhw"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_vkrmw"]
+
+[resource]
+script = ExtResource("1_vkrmw")
+scene_description = "A path leads to the east back to the cottage glade"
+entrance_description = "You decide to return to the cottage glade"
+location = NodePath("../CottageGlade")
+names = Array[String](["COTTAGE", "SOUTH", "GLADE"])
+locked_by = ""

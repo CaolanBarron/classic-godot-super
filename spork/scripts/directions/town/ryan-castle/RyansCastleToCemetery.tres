@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://cipia4yam2heu"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_rylyk"]
+
+[resource]
+script = ExtResource("1_rylyk")
+scene_description = "A small path to the north leads to the cemetery"
+entrance_description = "You take the small path to the cemetery"
+location = NodePath("../../Cemetery")
+names = Array[String](["CEMETERY", "NORTH", "PATH"])
+locked_by = ""

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://b8d1bglpbmx42"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_bc1j2"]
+
+[resource]
+script = ExtResource("1_bc1j2")
+scene_description = "There is a single wooden door leading outside"
+entrance_description = "You open the door and step outside"
+location = NodePath("..")
+names = Array[String](["DOOR", "OUTSIDE", "GLADE"])
+locked_by = "CottageKey"

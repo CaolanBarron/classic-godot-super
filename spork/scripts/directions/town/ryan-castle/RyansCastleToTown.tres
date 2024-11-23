@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://chrliantk5lsw"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_ewhyj"]
+
+[resource]
+script = ExtResource("1_ewhyj")
+scene_description = "Going south will lead back to the town centre"
+entrance_description = "You leave Uriangkadais castle and head for the town centre"
+location = NodePath("..")
+names = Array[String](["SOUTH", "TOWN", "CENTRE"])
+locked_by = ""

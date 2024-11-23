@@ -14,6 +14,9 @@ func _ready():
 func find_usable_objects():
 	var siblings:Array = get_parent().get_children()
 	siblings += get_children()
+	for object in siblings:
+		if object is Item and object.can_open and object.is_open:
+			siblings += object.get_children()
 	return siblings.filter(func(o): return o.name != 'Player' and !(o is Location))
 
 
@@ -24,6 +27,12 @@ func get_surrounding_descriptions() -> Array:
 	var surroundings = [parent_location]
 	surroundings += parent_location.directions
 	surroundings += find_usable_objects()
+	
+	surroundings = \
+		surroundings.filter(func(o): 
+			if o is Item: 
+				return o.get_parent().name != 'Player'
+			return true)
 	
 	surroundings = surroundings.filter(func(o): return o.scene_description)
 	var scene_description_strings = \

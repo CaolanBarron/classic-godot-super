@@ -56,12 +56,13 @@ func parse_command(command: String):
 	# Check for special verbs that dont use objects 
 	var game_verb = action_manager.global_verbs(found_verb, command_array)
 	if game_verb:
-		if game_verb == 'LOCATION_CHANGED':
+		if game_verb is String && game_verb == 'LOCATION_CHANGED':
 			return
 		return game_verb
 	
 	# Find the main object
 	var surrounding_objects = player.find_usable_objects()
+	print(surrounding_objects)
 
 	var found_objects = []
 	for word in command_array:

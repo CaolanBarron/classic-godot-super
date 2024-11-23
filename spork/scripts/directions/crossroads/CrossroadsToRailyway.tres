@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://memd8bc83n8d"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_yyml2"]
+
+[resource]
+script = ExtResource("1_yyml2")
+scene_description = "The path to the west leads to the railway station"
+entrance_description = "You head towards the railway station"
+location = NodePath("../RailwayStation")
+names = Array[String](["RAILWAY", "WEST", "RAIL", "TRAIN", "STATION"])
+locked_by = ""

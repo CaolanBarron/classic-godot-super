@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://d2l4l4m2bo7xl"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_65nwx"]
+
+[resource]
+script = ExtResource("1_65nwx")
+scene_description = "There is a quaint cottage sitting in between the trees with a single wooden door "
+entrance_description = "You open the cottage door and step in"
+location = NodePath("Cottage")
+names = Array[String](["DOOR", "COTTAGE"])
+locked_by = ""

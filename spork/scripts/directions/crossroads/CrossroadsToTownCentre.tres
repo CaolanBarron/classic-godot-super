@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Direction" load_steps=2 format=3 uid="uid://chfjeg5thecas"]
+
+[ext_resource type="Script" path="res://scripts/directions/Direction.gd" id="1_kkjxj"]
+
+[resource]
+script = ExtResource("1_kkjxj")
+scene_description = "The northern path leads to the town centre"
+entrance_description = "You walk towards the town centre"
+location = NodePath("../TownCenter")
+names = Array[String](["NORTH", "TOWN", "CENTRE"])
+locked_by = ""

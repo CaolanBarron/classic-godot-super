@@ -8,7 +8,7 @@ class_name Item
 @export var is_locked: bool = false
 
  
-func _applicable_verbs(verb: String) -> String:
+func _applicable_verbs(verb: String):
 	match verb:
 		'TAKE':
 			return pick_up()
@@ -21,10 +21,6 @@ func _applicable_verbs(verb: String) -> String:
 	var try_generic_verbs: String = super._applicable_verbs(verb)
 	if try_generic_verbs: return try_generic_verbs
 	return 'This item cannot be used in this way'
-	
-
-
-
 
 func pick_up():
 	if !can_pick_up:
@@ -45,4 +41,12 @@ func drop():
 	return 'You dropped the ' + display_name
 
 func open():
-	pass
+	if !can_open:
+		return 'You cannot open this item'
+	if is_open:
+		return 'Its already open'
+	is_open = true
+	var contained_objects = get_children()
+	
+	return ['You open the ' + display_name + ' revealing...'] + \
+	contained_objects.map(func(o): return 'A ' + o.display_name)
