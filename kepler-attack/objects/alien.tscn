@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct1hdxo5767yj"]
+
+[ext_resource type="Texture2D" uid="uid://bk6xdcde7q0qx" path="res://sprites/basic-alien.png" id="1_banah"]
+[ext_resource type="Script" path="res://objects/Alien.gd" id="1_nu4gt"]
+
+[node name="Alien" type="Area2D"]
+script = ExtResource("1_nu4gt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_banah")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, 15, 14.8, 16, -15.6, 16, -16, -16, -0.5, -16, 1.1, -16, 16, -16)
