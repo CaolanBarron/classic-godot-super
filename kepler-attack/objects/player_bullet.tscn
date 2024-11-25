@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnn2lypmnojjd"]
 
 [ext_resource type="Texture2D" uid="uid://id6l0wngyrfk" path="res://sprites/basic-player-bullet.png" id="1_1ven7"]
-[ext_resource type="Script" path="res://objects/PlayerBullet.gd" id="1_k5wyt"]
+[ext_resource type="Script" path="res://scripts/PlayerBullet.gd" id="1_k5wyt"]
 
 [node name="PlayerBullet" type="Area2D"]
 script = ExtResource("1_k5wyt")

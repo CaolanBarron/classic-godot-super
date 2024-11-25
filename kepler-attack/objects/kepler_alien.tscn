@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bam87dynj8u2"]
+
+[ext_resource type="Script" path="res://scripts/Alien.gd" id="1_jt8px"]
+[ext_resource type="Texture2D" uid="uid://668e0le1ke71" path="res://sprites/alien_green.png" id="2_j5k5e"]
+
+[node name="Alien" type="Area2D"]
+script = ExtResource("1_jt8px")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_j5k5e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, 15, 14.8, 16, -15.6, 16, -16, -16, -0.5, -16, 1.1, -16, 16, -16)
