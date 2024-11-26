@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwog3hj8gobdo"]
+
+[ext_resource type="PackedScene" uid="uid://d1dsyp4x533wg" path="res://objects/player.tscn" id="1_glbhq"]
+
+[node name="Basic" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_glbhq")]
+rotation_speed = 0.1
+acceleration_force = 5
