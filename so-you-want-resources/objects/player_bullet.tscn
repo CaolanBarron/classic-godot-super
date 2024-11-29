@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrnn13s65d3p"]
+
+[ext_resource type="Texture2D" uid="uid://2in0duwrha2s" path="res://sprites/basic-player-bullet.png" id="1_wvgwb"]
+[ext_resource type="Script" path="res://scripts/player_bullet.gd" id="1_ykq7d"]
+
+[node name="PlayerBullet" type="Area2D"]
+script = ExtResource("1_ykq7d")
+
+[node name="Basic-player-bullet" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.25)
+texture = ExtResource("1_wvgwb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.625, 0.3125)
+polygon = PackedVector2Array(4, 8, -4, 8, -4, -8, 4, -8)
+
+[node name="Expiry" type="Timer" parent="."]
+one_shot = true
+autostart = true
