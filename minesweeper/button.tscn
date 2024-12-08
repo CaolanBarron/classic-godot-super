@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp45f3fbvw11r"]
+
+[ext_resource type="Texture2D" uid="uid://cx4k3jjuo242o" path="res://sprites/base-tile.png" id="1_c8eh6"]
+[ext_resource type="Script" path="res://tile_button.gd" id="2_yklu4"]
+
+[node name="Button" type="TextureButton"]
+offset_right = 76.0
+offset_bottom = 76.0
+button_mask = 3
+texture_normal = ExtResource("1_c8eh6")
+script = ExtResource("2_yklu4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Explosion" type="Timer" parent="."]
+one_shot = true
+
+[node name="Ending" type="Timer" parent="."]
+one_shot = true

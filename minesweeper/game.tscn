@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl32vwa7si8qn"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_ipj2s"]
+[ext_resource type="Texture2D" uid="uid://dfigkat0ddwu6" path="res://sprites/Sprite-0004.png" id="2_okqji"]
+[ext_resource type="Script" path="res://count_up_timer.gd" id="3_kaig6"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("button_container", "flags_label")]
+script = ExtResource("1_ipj2s")
+row_size = 9
+column_size = 9
+number_mines = 10
+button_container = NodePath("CanvasLayer/Control/VBoxContainer/ButtonContainer")
+flags_label = NodePath("CanvasLayer/Control/VBoxContainer/HBoxContainer/RemainingFlags")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RemainingFlags" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_okqji")
+expand_mode = 3
+
+[node name="CountUpTimer" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_kaig6")
+
+[node name="ButtonContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 9
