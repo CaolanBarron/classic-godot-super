@@ -10,8 +10,8 @@ func _ready():
 	expiry_timer.timeout.connect(_expire_bullet)
 	area_entered.connect(_area_entered)
 
-func fire(direction, speed_modifier):
-	self.direction = direction
+func fire(input_direction, _speed_modifier):
+	direction = input_direction
 
 func _physics_process(delta):
 	position += direction * (speed * delta)
@@ -21,10 +21,8 @@ func _expire_bullet():
 	queue_free()
 
 func _area_entered(area):
-	if area is Asteroid:
+	if area is Asteroid or area.get_parent() is ResourceAsteroid:
 		queue_free()
-
-func _find_spawn_point():
-	var x:int
-	var y:int
-	pass
+	print(area.name)
+	if area.name == 'Option1' or area.name == 'Option2' or area.name == 'Option3':
+		queue_free()

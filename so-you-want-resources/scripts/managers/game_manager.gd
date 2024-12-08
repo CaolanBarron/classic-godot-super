@@ -8,7 +8,6 @@ var score = 0
 
 
 func _ready():
-	# TODO: validate score display and life container exists
 	SignalBus.increase_score.connect(_increase_score)
 	SignalBus.remove_chance.connect(_remove_chance)
 	SignalBus.game_over.connect(_game_over)

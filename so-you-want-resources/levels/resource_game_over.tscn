@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy71bloiiggiq"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_h5xmk"]
+[ext_resource type="AudioStream" uid="uid://c3dshfwgxyfid" path="res://audio/ObservingTheStar.ogg" id="2_f7i88"]
+
+[node name="GameOver" type="CanvasLayer" node_paths=PackedStringArray("button")]
+script = ExtResource("1_h5xmk")
+button = NodePath("Control/HBoxContainer/VBoxContainer/Button")
+resource_mode = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game joever"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "play again"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_f7i88")
+autoplay = true

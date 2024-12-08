@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://4wg5s0boeqax"]
+
+[ext_resource type="Texture2D" uid="uid://uqcltltxntj4" path="res://sprites/resource.png" id="1_e2622"]
+[ext_resource type="Script" path="res://scripts/resource_usable.gd" id="1_mv6fy"]
+[ext_resource type="Texture2D" uid="uid://wd3vgsv5hmhj" path="res://sprites/resource_mode/resource_break/resource_breaking1.png" id="2_6sv6h"]
+[ext_resource type="Texture2D" uid="uid://d3f56nkmsr3qe" path="res://sprites/resource_mode/resource_break/resource_breaking2.png" id="3_g566h"]
+[ext_resource type="Texture2D" uid="uid://dj6hnuv83umtp" path="res://sprites/resource_mode/resource_break/resource_breaking3.png" id="4_vabqp"]
+[ext_resource type="Texture2D" uid="uid://hmuxamd474l" path="res://sprites/resource_mode/resource_break/resource_breaking4.png" id="5_ff6vn"]
+[ext_resource type="Texture2D" uid="uid://p2lo3glugjyv" path="res://sprites/resource_mode/resource_break/resource_breaking5.png" id="6_njxsk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtidj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e2622")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6sv6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g566h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vabqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ff6vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_njxsk")
+}],
+"loop": false,
+"name": &"destruction",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2wcv"]
+radius = 16.0
+
+[node name="ResourceUsable" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 45
+gravity_scale = 0.0
+script = ExtResource("1_mv6fy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_xtidj")
+animation = &"destruction"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h2wcv")
+
+[node name="ResourceUsableArea2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResourceUsableArea2D"]
+shape = SubResource("CircleShape2D_h2wcv")

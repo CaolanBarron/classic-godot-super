@@ -1,0 +1,252 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1dsyp4x533wg"]
+
+[ext_resource type="Texture2D" uid="uid://duoaumalm3hmt" path="res://sprites/player-basic.png" id="1_c60es"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_xlqlg"]
+[ext_resource type="PackedScene" uid="uid://dktvpxul7qiwa" path="res://pull_collision.tscn" id="3_dt1xk"]
+[ext_resource type="Texture2D" uid="uid://bfcx2q4slu7it" path="res://sprites/rocket-booster1.png" id="3_ygd1t"]
+[ext_resource type="Texture2D" uid="uid://ssuoe3381a3n" path="res://sprites/rocket-booster2.png" id="4_wuuyd"]
+[ext_resource type="Texture2D" uid="uid://doc7o811yjtqv" path="res://sprites/ship-parts/player-basic - parts1.png" id="5_b06ap"]
+[ext_resource type="Texture2D" uid="uid://bibtip35la0kn" path="res://sprites/ship-parts/player-basic - parts2.png" id="6_3a4e7"]
+[ext_resource type="Texture2D" uid="uid://cdbaiqbjuo40u" path="res://sprites/ship-parts/player-basic - parts3.png" id="7_02m2e"]
+[ext_resource type="Script" path="res://objects/AimingReticleUpgrade.gd" id="9_jv2s0"]
+
+[sub_resource type="Animation" id="Animation_tm0x2"]
+resource_name = "blank-parts"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathAnimation/Player-basic-Parts1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathAnimation/Player-basic-Parts2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathAnimation/Player-basic-Parts3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_no83i"]
+resource_name = "ship-explodes"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathAnimation/Player-basic-Parts1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(216, -243)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathAnimation/Player-basic-Parts2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-429, -69)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathAnimation/Player-basic-Parts3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(205, 217)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathAnimation/Player-basic-Parts1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -3.01658]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DeathAnimation/Player-basic-Parts2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.41924]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathAnimation/Player-basic-Parts3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -2.68227]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DeathAnimation/Player-basic-Parts1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DeathAnimation/Player-basic-Parts2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DeathAnimation/Player-basic-Parts3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s8mhi"]
+_data = {
+"blank-parts": SubResource("Animation_tm0x2"),
+"ship-explodes": SubResource("Animation_no83i")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18q2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ygd1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wuuyd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 34
+script = ExtResource("1_xlqlg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c60es")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(26, 32, 22, 32, 17, 18, -17, 18, -22, 32, -26, 32, -1, -32, 1, -32)
+
+[node name="BulletOrigin" type="Node2D" parent="."]
+position = Vector2(0, -30)
+
+[node name="PlayerCollision" type="Area2D" parent="."]
+collision_mask = 30
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerCollision"]
+polygon = PackedVector2Array(7, -29.8, 7, -26.4, 29.1, 32, 18.8, 32, 14.6, 21, -14.3, 21, -18.9, 32, -29, 32, -29, 28.6, -5, -30.6, -5, -32, 5, -32)
+
+[node name="PlayerPullCollision" parent="." instance=ExtResource("3_dt1xk")]
+force_power = 600
+
+[node name="DeathAnimation" type="Node2D" parent="."]
+position = Vector2(0, 41)
+scale = Vector2(1.5, 1.125)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DeathAnimation"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_s8mhi")
+}
+
+[node name="Player-basic-Parts1" type="Sprite2D" parent="DeathAnimation"]
+position = Vector2(0, -36.4444)
+scale = Vector2(0.666667, 0.888889)
+texture = ExtResource("5_b06ap")
+
+[node name="Player-basic-Parts2" type="Sprite2D" parent="DeathAnimation"]
+position = Vector2(0, -36.4444)
+scale = Vector2(0.666667, 0.888889)
+texture = ExtResource("6_3a4e7")
+
+[node name="Player-basic-Parts3" type="Sprite2D" parent="DeathAnimation"]
+position = Vector2(0, -36.4444)
+scale = Vector2(0.666667, 0.888889)
+texture = ExtResource("7_02m2e")
+
+[node name="RocketBoostAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 41)
+scale = Vector2(1.5, 1.125)
+sprite_frames = SubResource("SpriteFrames_18q2r")
+frame = 1
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="RespawnTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="InvulnabiltiyTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="InvulnabilityDisplayTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+
+[node name="Upgrades" type="Node2D" parent="."]
+
+[node name="AimingReticle" type="Node2D" parent="Upgrades"]
+script = ExtResource("9_jv2s0")

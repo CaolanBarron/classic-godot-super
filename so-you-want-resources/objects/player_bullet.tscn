@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scripts/player_bullet.gd" id="1_ykq7d"]
 
 [node name="PlayerBullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 94
 script = ExtResource("1_ykq7d")
 
 [node name="Basic-player-bullet" type="Sprite2D" parent="."]

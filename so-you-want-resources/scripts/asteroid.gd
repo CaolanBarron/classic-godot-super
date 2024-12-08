@@ -5,6 +5,8 @@ class_name Asteroid
 # Start moving in a random direction at a random speed
 # Start rotating in a random direction at a random speed
 
+var drops_resources:bool = false
+
 var max_move_speed: int = 200
 var min_move_speed: int = 50
 var max_rotate_speed: float = 3
@@ -17,6 +19,7 @@ var rotation_speed:int = 0
 var stage = 1
 
 var asteroid_scene = preload("res://objects/asteroid.tscn")
+var resource_scene = preload("res://objects/resource_usable.tscn")
 
 func _ready():
 	area_entered.connect(_area_entered)
@@ -31,16 +34,26 @@ func _area_entered(area):
 			1:
 				SignalBus.increase_score.emit(20)
 			2:
-				SignalBus.increase_score.emit(50)
+				SignalBus.increase_score.emit(40)
 			3:
+				SignalBus.increase_score.emit(60)
+			4:
 				SignalBus.increase_score.emit(80)
 		
-		if stage == 3: return
+
+		if stage > 2 && drops_resources:
+			var resource_instance = resource_scene.instantiate()
+			resource_instance.position = position
+			get_parent().call_deferred('add_child', resource_instance)
+			return
+		if stage > 3: return
 		for n in randi_range(1,3):
 			var instance = asteroid_scene.instantiate()
+			
 			get_parent().call_deferred('add_child',instance)
+			if drops_resources: instance.drops_resources = true
 			instance.position = position
-			instance.stage += 1
+			instance.stage =  stage + 1
 			instance.scale = scale
 			instance.scale.x -= 0.2
 			instance.scale.y -= 0.2

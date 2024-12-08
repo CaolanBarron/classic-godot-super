@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwog3hj8gobdo"]
+
+[ext_resource type="PackedScene" uid="uid://d1dsyp4x533wg" path="res://objects/player.tscn" id="1_1oas6"]
+[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="2_1guee"]
+[ext_resource type="Script" path="res://scripts/managers/asteroid_manager.gd" id="3_xwujc"]
+[ext_resource type="Texture2D" uid="uid://jpi585qbt0wq" path="res://sprites/player-small-icon.png" id="4_j81aj"]
+[ext_resource type="Script" path="res://scripts/ufo_manager.gd" id="5_kq6a4"]
+
+[sub_resource type="GDScript" id="GDScript_46bhn"]
+script/source = "extends Label
+
+func _ready():
+	SignalBus.increase_score.connect(_score_increased)
+	
+func _score_increased(value: int):
+	var current_score = int(text)
+	text = str(current_score + value)
+"
+
+[node name="Basic" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1156.0
+offset_top = -702.0
+offset_right = 1159.0
+offset_bottom = 715.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_1oas6")]
+rotation_speed = 0.05
+acceleration_force = 10
+velocity_decrease = 1.0
+respawn_time = null
+
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("score_display", "life_container")]
+script = ExtResource("2_1guee")
+score_display = NodePath("")
+life_container = NodePath("")
+
+[node name="AsteroidManager" type="Node2D" parent="."]
+script = ExtResource("3_xwujc")
+
+[node name="SpawnCooldown" type="Timer" parent="AsteroidManager"]
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(140, 10)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ScoreDisplay" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "000"
+script = SubResource("GDScript_46bhn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Life1" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_j81aj")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Life2" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_j81aj")
+stretch_mode = 5
+
+[node name="Life3" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_j81aj")
+stretch_mode = 5
+
+[node name="UfoManager" type="Node2D" parent="."]
+script = ExtResource("5_kq6a4")
+
+[node name="SpawnCooldown" type="Timer" parent="UfoManager"]
+wait_time = 10.0
+one_shot = true
+autostart = true

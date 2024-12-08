@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://deyqgpqy0wcfd"]
+[gd_scene load_steps=3 format=3 uid="uid://deyqgpqy0wcfd"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_7vw2j"]
+[ext_resource type="AudioStream" uid="uid://c3dshfwgxyfid" path="res://audio/ObservingTheStar.ogg" id="2_u2hde"]
 
 [node name="GameOver" type="CanvasLayer" node_paths=PackedStringArray("button")]
 script = ExtResource("1_7vw2j")
@@ -39,10 +40,16 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Game joever"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "play again"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u2hde")
+autoplay = true

@@ -9,7 +9,7 @@ func _ready():
 
 
 func _load_basic_scene():
-	get_tree().change_scene_to_file("res://basic.tscn")
+	get_tree().change_scene_to_file("res://levels/basic.tscn")
 
 
 func _load_resource_scene():

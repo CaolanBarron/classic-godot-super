@@ -1,0 +1,208 @@
+[gd_scene load_steps=17 format=3 uid="uid://dnwk2eti8fsxo"]
+
+[ext_resource type="PackedScene" uid="uid://d1dsyp4x533wg" path="res://objects/player.tscn" id="1_wmwcj"]
+[ext_resource type="Script" path="res://scripts/wave_manager.gd" id="2_5qplx"]
+[ext_resource type="Texture2D" uid="uid://b0wlpcwmxbn8d" path="res://sprites/resource_mode/anchor_magnet.png" id="4_hs5af"]
+[ext_resource type="Script" path="res://scripts/managers/shop_manager.gd" id="5_1fkta"]
+[ext_resource type="PackedScene" uid="uid://dktvpxul7qiwa" path="res://pull_collision.tscn" id="5_dfklo"]
+[ext_resource type="Script" path="res://scripts/managers/upgrade_manager.gd" id="6_y76en"]
+[ext_resource type="PackedScene" uid="uid://ct7i7bmvh2uq4" path="res://objects/upgrades/fire_faster.tscn" id="7_0h55c"]
+[ext_resource type="PackedScene" uid="uid://ck1ji3luvrw3y" path="res://objects/upgrades/increase_bullet_size.tscn" id="8_5qenn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_teuj7"]
+radius = 25.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fyj11"]
+size = Vector2(250, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3ob8"]
+size = Vector2(250, 200)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sbxqd"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfwok"]
+size = Vector2(100, 100)
+
+[sub_resource type="Animation" id="Animation_me3en"]
+resource_name = "shop_enter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Options:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -547), Vector2(0, -280)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exit:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 500), Vector2(0, 250)]
+}
+
+[sub_resource type="Animation" id="Animation_6u4xs"]
+resource_name = "shop_enter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Options:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -280), Vector2(0, -547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exit:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 250), Vector2(0, 500)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_whvsl"]
+_data = {
+"shop_enter": SubResource("Animation_me3en"),
+"shop_exit": SubResource("Animation_6u4xs")
+}
+
+[node name="ResourceLevel" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -855.0
+offset_top = -553.0
+offset_right = -815.0
+offset_bottom = -513.0
+scale = Vector2(42.7709, 31.3494)
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ResourceAnchor" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+
+[node name="AnchorMagnet" type="Sprite2D" parent="ResourceAnchor"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_hs5af")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResourceAnchor"]
+shape = SubResource("CircleShape2D_teuj7")
+
+[node name="PlayerPullCollision" parent="ResourceAnchor" instance=ExtResource("5_dfklo")]
+stationary = true
+force_power = 400
+
+[node name="Player" parent="." instance=ExtResource("1_wmwcj")]
+position = Vector2(0, 112)
+collision_layer = 3
+rotation_speed = 0.04
+acceleration_force = 10
+velocity_decrease = 1.0
+respawn_time = 2
+
+[node name="Shop" type="Node2D" parent="."]
+script = ExtResource("5_1fkta")
+
+[node name="Options" type="Node2D" parent="Shop"]
+position = Vector2(0, -547)
+
+[node name="Option1" type="Area2D" parent="Shop/Options"]
+position = Vector2(-400, 0)
+collision_layer = 64
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop/Options/Option1"]
+texture = SubResource("PlaceholderTexture2D_fyj11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop/Options/Option1"]
+shape = SubResource("RectangleShape2D_r3ob8")
+
+[node name="Option2" type="Area2D" parent="Shop/Options"]
+collision_layer = 64
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop/Options/Option2"]
+texture = SubResource("PlaceholderTexture2D_fyj11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop/Options/Option2"]
+shape = SubResource("RectangleShape2D_r3ob8")
+
+[node name="Option3" type="Area2D" parent="Shop/Options"]
+position = Vector2(400, 0)
+collision_layer = 64
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop/Options/Option3"]
+texture = SubResource("PlaceholderTexture2D_fyj11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop/Options/Option3"]
+shape = SubResource("RectangleShape2D_r3ob8")
+
+[node name="Exit" type="Area2D" parent="Shop"]
+position = Vector2(0, 500)
+collision_layer = 64
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop/Exit"]
+texture = SubResource("PlaceholderTexture2D_sbxqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop/Exit"]
+shape = SubResource("RectangleShape2D_tfwok")
+
+[node name="ExitLabel" type="Label" parent="Shop/Exit"]
+offset_left = -49.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 45
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shop"]
+libraries = {
+"": SubResource("AnimationLibrary_whvsl")
+}
+
+[node name="WaveManager" type="Node2D" parent="."]
+script = ExtResource("2_5qplx")
+init_asteroid_count = 3
+init_ufo_count = 1
+wave_cooldown_time = 5
+
+[node name="AsteroidSpawnCooldown" type="Timer" parent="WaveManager"]
+one_shot = true
+
+[node name="UFOSpawnCooldown" type="Timer" parent="WaveManager"]
+one_shot = true
+
+[node name="WaveCooldown" type="Timer" parent="WaveManager"]
+one_shot = true
+
+[node name="WaitNewRoundConditions" type="Timer" parent="WaveManager"]
+one_shot = true
+
+[node name="UpgradeManager" type="Node2D" parent="."]
+script = ExtResource("6_y76en")
+basic_upgrades = Array[PackedScene]([ExtResource("7_0h55c"), ExtResource("8_5qenn")])

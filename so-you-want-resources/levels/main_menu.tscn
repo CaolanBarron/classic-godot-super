@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbutrg1wtsx0e"]
+[gd_scene load_steps=3 format=3 uid="uid://cbutrg1wtsx0e"]
 
-[ext_resource type="Script" path="res://levels/main_menu.gd" id="1_kwsgt"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_kwsgt"]
+[ext_resource type="AudioStream" uid="uid://c3dshfwgxyfid" path="res://audio/ObservingTheStar.ogg" id="2_jmage"]
 
 [node name="GameOver" type="CanvasLayer" node_paths=PackedStringArray("basic_button", "resource_button")]
 script = ExtResource("1_kwsgt")
@@ -47,8 +48,14 @@ vertical_alignment = 1
 
 [node name="BasicMode" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Basic mode"
 
 [node name="ResourceMode" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Resource mode"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jmage")
+autoplay = true

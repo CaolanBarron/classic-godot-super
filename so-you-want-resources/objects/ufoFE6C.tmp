@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://b60yvq4mxt6pn"]
+
+[ext_resource type="Texture2D" uid="uid://b5ehatrqa7wlb" path="res://sprites/ufo-parts/ufo - parts1.png" id="1_ggi1y"]
+[ext_resource type="Script" path="res://objects/ufo_explosion.gd" id="1_vpupg"]
+[ext_resource type="Texture2D" uid="uid://day3vbmju8qng" path="res://sprites/ufo-parts/ufo - parts2.png" id="2_frrqh"]
+[ext_resource type="Texture2D" uid="uid://3in4rbfaejml" path="res://sprites/ufo-parts/ufo - parts3.png" id="3_83hcy"]
+
+[sub_resource type="Animation" id="Animation_5pplg"]
+resource_name = "ufo-dies"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UfoExplosion/Ufo-Parts1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [true, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UfoExplosion/Ufo-Parts2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UfoExplosion/Ufo-Parts3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UfoExplosion/Ufo-Parts1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(16.525, -205)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UfoExplosion/Ufo-Parts2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-286, 155)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UfoExplosion/Ufo-Parts3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(75, 232)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UfoExplosion/Ufo-Parts1:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.34739]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UfoExplosion/Ufo-Parts2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -2.87245]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("UfoExplosion/Ufo-Parts3:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.29076]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqavt"]
+_data = {
+"ufo-dies": SubResource("Animation_5pplg")
+}
+
+[node name="UfoExplosion" type="Node2D"]
+script = ExtResource("1_vpupg")
+
+[node name="Ufo-Parts1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16.525, -205)
+rotation = 1.34739
+texture = ExtResource("1_ggi1y")
+
+[node name="Ufo-Parts2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-286, 155)
+rotation = -2.87245
+texture = ExtResource("2_frrqh")
+
+[node name="Ufo-Parts3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(75, 232)
+rotation = 2.29076
+texture = ExtResource("3_83hcy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_pqavt")
+}

@@ -33,4 +33,4 @@ func _spawn_asteroid():
 	instance.position = random_point
 	get_parent().add_child.call_deferred(instance)
 	
-	spawn_cooldown.start(randf_range(1, 2.5))
+	spawn_cooldown.start(randf_range(2, 4.5))

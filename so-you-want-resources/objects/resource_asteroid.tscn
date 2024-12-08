@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce8jdav4hwp0b"]
+
+[ext_resource type="Script" path="res://scripts/resource_asteroid.gd" id="1_iyxns"]
+[ext_resource type="Texture2D" uid="uid://icnmpkt4xy68" path="res://sprites/asteroids/asteroid-big-1.png" id="1_s5pmv"]
+
+[node name="ResourceAsteroid" type="CharacterBody2D" groups=["wave_enemy"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_iyxns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_s5pmv")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(19, -19.6, 19, -17.5, 32, 5.3, 32, 6, 29, 6, 15, 24, 12, 24, 12, 26.8, 7.8, 31, 3.4, 31, -2.2, 32, -10, 32, -10, 30.8, -12.8, 28, -20, 28, -20, 25, -20.8, 17, -24.5, 17, -32, 13.2, -32, 10.4, -27, 2.4, -27, -1, -28.6, -7, -26, -7, -15, -22, -12.2, -22, -9.1, -18.9, -6, -22.7, -6, -25.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 27
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(19, -19.6, 19, -17.5, 32, 5.3, 32, 6, 29, 6, 15, 24, 12, 24, 12, 26.8, 7.8, 31, 3.4, 31, -2.2, 32, -10, 32, -10, 30.8, -12.8, 28, -20, 28, -20, 25, -20.8, 17, -24.5, 17, -32, 13.2, -32, 10.4, -27, 2.4, -27, -1, -28.6, -7, -26, -7, -15, -22, -12.2, -22, -9.1, -18.9, -6, -22.7, -6, -25.5)
